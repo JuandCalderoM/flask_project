@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{% block title %}
+      {{super()}}
+      Facatur
+    {% endblock title %}</title>
+</head>
+<body>
+<header class="site-header init">
+    <div class="content content-header">
+        <div class="barra">
+            <a href="{{ url_for('index') }}"> 
+                <img src="{{ url_for('static', filename='imagenes/logov1.png') }}" alt="logotipo"> 
+            </a>
+            <nav class="busqueda"> 
+              <a href="{{ url_for('nosotros') }}">Nosotros</a>
+              <a href="{{ url_for('anuncios') }}"> Anuncios</a>
+              <a href="{{ url_for('blog') }}"> Blog</a>
+            </nav>
+        </div> <!-- naveg-->             
+    </div>  <!-- content-->
+</header>  
+{% block content %}
+  
+{% endblock content %}
+<footer class="siste-footer content">
+  <div class="content content-footer">
+    <nav class="busqueda">
+      <a href="{{ url_for('nosotros') }}">Nosotros</a>
+      <a href="{{ url_for('anuncios') }}"> Anuncios</a>
+      <a href="{{ url_for('blog') }}"> Blog</a>
+    </nav>
+    <b class="copy"> Todos los derechos reservados &copy;</b>
+  </div>
+</footer>
+</body>
+</html>

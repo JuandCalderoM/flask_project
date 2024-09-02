@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+<title>
+  {% block title %}
+    nosotros y mucho mas
+  {% endblock title %}
+</title>
+{% block content %}
+<div class="recuadro">
+    <div class="blog-grid">
+        <div class="entrada-blog-nosotros">
+            <img src="{{ url_for('static', filename='imagenes/nosotros.jpg') }}" alt="Imagen del blog">
+            <div class="texto-entrada-page">
+                <h4>Nosotros</h4>
+                <p>Somos un equipo apasionado por descubrir y compartir lo mejor de Facatativá, un rincón encantador de Colombia lleno de historia, cultura y belleza natural. Nuestro objetivo es ser la fuente de información más completa y confiable sobre todo lo que esta maravillosa ciudad tiene para ofrecer. Desde sus monumentos históricos hasta sus vibrantes festivales, pasando por sus acogedores hoteles y aventuras al aire libre, queremos que cada visitante y residente pueda encontrar algo que le inspire.</p>
+                <p><b>Lo Que Hacemos</b></p>
+                <ul class="texto_descritivo-page">
+                    <li><b>Guías de Viaje:</b> <br>Ofrecemos guías detalladas sobre los principales atractivos turísticos de Facatativá, desde la Plaza de Bolívar hasta el Cerro Manjui.</li>
+                    <li><b>Eventos y Noticias Locales:</b> <br>Manténte al día con los eventos más importantes y las últimas noticias de Facatativá.</li>
+                </ul>      
+            </div>
+        </div>
+    </div>
+    <section class="content seccion">
+        <h2 class="fw-300 center-text recuadro-titulo">Somos</h2>
+        <div class="posd">
+            <div class="iconos">
+                <img src="{{ url_for('static', filename='imagenes/somos.png') }}" alt="Misión">
+                <h3 class="encabezado">Nuestra Misión</h3>
+                <p>Nuestra misión es promover Facatativá como un destino turístico de primer nivel, resaltando su riqueza cultural, natural y su cálida hospitalidad. Nos esforzamos por ofrecer contenido de alta calidad que no solo informe, sino que también inspire a las personas a explorar y disfrutar de cada rincón de esta ciudad.</p>
+            </div>
+            <div class="iconos">
+                <img src="{{ url_for('static', filename='imagenes/compromiso.png') }}" alt="Compromiso">
+                <h3 class="encabezado">Nuestro Compromiso</h3>
+                <p>Nos comprometemos a brindar contenido preciso, útil y atractivo. Valoramos la retroalimentación de nuestros lectores y siempre estamos buscando maneras de mejorar y expandir nuestro blog. Queremos que cada visita a nuestro sitio sea una experiencia enriquecedora y que cada lector se sienta más conectado con Facatativá.</p>
+            </div>
+            <div class="iconos">
+                <img src="{{ url_for('static', filename='imagenes/thanks.png') }}" alt="Agradecimiento">
+                <h3 class="encabezado">Gracias por Visitarnos</h3>
+                <p>Agradecemos tu interés en nuestro blog y en Facatativá. Esperamos que encuentres útil nuestra información y que te inspire a explorar y disfrutar de todo lo que esta increíble ciudad tiene para ofrecer.</p>
+            </div>
+        </div>
+    </section>    
+</div>
+
+{% endblock content %}

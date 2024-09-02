@@ -1,0 +1,164 @@
+{% extends 'index.html' %}
+
+<title>
+  {% block title %}
+  
+  {% endblock title %}
+</title>
+{% block content %}
+
+<div class="recuadro">
+  <main>
+      <h2 class="fw-300 center-text recuadro-titulo"> Atracciones destacadas en Facatativá</h2>
+      <div class="content-Anunc">
+          <div class="anun">
+              <img src="{{ url_for('static', filename='imagenes/piedras del tunjo.jpg') }}" alt="imagen atraccion">
+              <div class="contenido_anun">
+                  <h3>Piedras del Tunjo</h3>
+                  <p>El Parque Arqueológico de Facatativá, también conocido como Piedras del Tunjo, es un conjunto de pictogramas cuyo origen exacto aún se desconoce</p>
+                  <div class="icono-info">
+                      <ul>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/precio.png') }}" alt="icono precio">
+                              <p>$10.000</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/ubicacion.png') }}" alt="icono Ubicacion">
+                              <p>Calle 5# 12A-10</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/horario.png') }}" alt="icono Horario">
+                              <p>8:00am - 4:00pm</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <a href="http://www.colparques.net/FACA" class="boton boton-ver d_display" target="_blank">ver atraccion</a>
+              </div>
+          </div>
+          <div class="anun">
+              <img src="{{ url_for('static', filename='imagenes/KYSQA.jpg') }}" alt="imagen atraccion">
+              <div class="contenido_anun">
+                  <h3>KYQA MHUYSQA</h3>
+                  <p>El Parque Kyqa Mhuysqa es un espacio temático y centro de eventos inspirado en la cultura colombiana y nuestros antepasados muiscas</p>
+                  <div class="icono-info">
+                      <ul>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/precio.png') }}" alt="icono precio">
+                              <p>$49.000</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/ubicacion.png') }}" alt="icono Ubicacion">
+                              <p>Los llanitos, Zipalandia, Facatativá</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/horario.png') }}" alt="icono Horario">
+                              <p>sabados y domingo 10a.m–7p.m</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <a href="https://acolap.org.co/kyqa-mhuysqa/" class="boton boton-ver d_display" target="_blank">ver atraccion</a>
+              </div>
+          </div>
+          <div class="anun">
+              <img src="{{ url_for('static', filename='imagenes/parque.jpeg') }}" alt="imagen atraccion">
+              <div class="contenido_anun">
+                  <h3>Parque de los Niños</h3>
+                  <p>El Parque de los Niños es un escenario recreo deportivo ubicado en la ciudad de Facatativá. Ofrece actividades para toda la familia y cuenta con instalaciones para el entretenimiento y la diversión.</p>
+                  <div class="icono-info">
+                      <ul>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/precio.png') }}" alt="icono precio">
+                              <p>gratis</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/ubicacion.png') }}" alt="icono Ubicacion">
+                              <p>Carrera 2 #1-102, en Facatativá</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/horario.png') }}" alt="icono Horario">
+                              <p>Abierto los jueves, viernes, sábados y domingos, con horarios específicos</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <a href="https://www.facatativa-cundinamarca.gov.co/noticias/el-parque-de-los-ninos-un-lugar-para-la-diversion" class="boton boton-ver d_display" target="_blank">ver atraccion</a>
+              </div>
+          </div>      
+      </div>
+      <div class="content-Anunc">
+          <div class="anun">
+              <img src="{{ url_for('static', filename='imagenes/camping.jpeg') }}" alt="imagen atraccion">
+              <div class="contenido_anun">
+                  <h3>Camping Montañero</h3>
+                  <p>Ubicado en la pintoresca Vereda Mancilla, el Camping Facatativá es el destino perfecto para aquellos que buscan una escapada natural en medio de la serenidad y belleza de la región. Este lugar ofrece una combinación ideal de tranquilidad, actividades al aire libre y contacto directo con la naturaleza, haciendo de cada visita una experiencia única y revitalizante.</p>
+                  <div class="icono-info">
+                      <ul>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/precio.png') }}" alt="icono precio">
+                              <p>$40.000</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/ubicacion.png') }}" alt="icono Ubicacion">
+                              <p>vereda Mancilla</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/horario.png') }}" alt="icono Horario">
+                              <p>8:00am - 8:00pm</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <a href="https://www.campingmontanero.com/product/camping-facatativa/" class="boton boton-ver d_display" target="_blank">ver atraccion</a>
+              </div>
+          </div>
+          <div class="anun">
+              <img src="{{ url_for('static', filename='imagenes/KYSQA.jpg') }}" alt="imagen atraccion">
+              <div class="contenido_anun">
+                  <h3>Plaza de Bolívar</h3>
+                  <p>La Plaza de Bolívar de Facatativá es más que un simple espacio público; es el epicentro de la vida social, cultural e histórica de la ciudad. Con su arquitectura encantadora, sus monumentos significativos y su ambiente vibrante, la plaza es un lugar que tanto residentes como visitantes deben explorar para comprender la esencia de Facatativá.</p>
+                  <div class="icono-info">
+                      <ul>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/precio.png') }}" alt="icono precio">
+                              <p>gratis</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/ubicacion.png') }}" alt="icono Ubicacion">
+                              <p>Facatativá, Cundinamarca</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/horario.png') }}" alt="icono Horario">
+                              <p>todo el dia</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <a href="https://www.tripadvisor.co/Attraction_Review-g1222953-d8692571-Reviews-Plaza_Simon_Bolivar-Facatativa_Cundinamarca_Department.html" class="boton boton-ver d_display" target="_blank">ver atraccion</a>
+              </div>
+          </div>
+          <div class="anun">
+              <img src="{{ url_for('static', filename='imagenes/cerro.jpeg') }}" alt="imagen atraccion">
+              <div class="contenido_anun">
+                  <h3>Cerro Manjui</h3>
+                  <p>El Cerro Manjui, ubicado en el municipio de Facatativá, es un lugar que combina belleza natural, biodiversidad y valor histórico. Este cerro se erige como un destino ideal para los amantes de la naturaleza, los aventureros y aquellos que buscan un respiro del bullicio de la vida urbana.</p>
+                  <div class="icono-info">
+                      <ul>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/precio.png') }}" alt="icono precio">
+                              <p>gratis</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/ubicacion.png') }}" alt="icono Ubicacion">
+                              <p>Facatativá</p>
+                          </li>
+                          <li>
+                              <img src="{{ url_for('static', filename='imagenes/horario.png') }}" alt="icono Horario">
+                              <p>Todo el dia</p>
+                          </li>
+                      </ul>
+                  </div>
+                  <a href="https://es.wikiloc.com/rutas-mountain-bike/facatativa-cerro-manjui-18297315" class="boton boton-ver d_display" target="_blank">ver atraccion</a>
+              </div>
+          </div>      
+      </div>
+      <br>
+  </main> 
+</div>
+{% endblock content %}
