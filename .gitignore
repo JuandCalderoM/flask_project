@@ -4,3 +4,4 @@ imagen/*.jpeg
 imagen/*.gif
 imagen/*.bmp
 imagen/*.tiff
+__pycache__/
