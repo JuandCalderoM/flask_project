@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+<title>
+  {% block title %}
+      Opss Error
+  {% endblock title %}
+</title>
+
+{% block content %}
+<div class="error-flex">
+<h2>Sorry, {{message_for_error}}</h2>
+</div>
+<div class="error-flex"></div>
+<p>{{error}}</p>
+</div>
+<div>
+    <img src="{{ url_for('static', filename='imagenes/opp.png') }}" alt="imagen atraccion">
+</div>
+
+           
+{% endblock %}
