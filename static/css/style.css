@@ -411,3 +411,19 @@ min-height: 100vh;
 .form_input:not(:placeholder-shown) + .form_line{
     transform: scale(1);
 }
+/* Pagina de Errores*/
+.error-flex{
+    flex:1;
+    min-width:300px;
+}
+.error-flex:first-child{
+    flex: 2;
+    padding: 25px;
+    background-color: #98ecc1;
+    margin: 20px;
+}
+.error-flex div{
+    padding: 25px;
+    background-color: #37ca80;
+    margin: 20px;
+}
