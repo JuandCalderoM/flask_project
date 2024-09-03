@@ -1,0 +1,2 @@
+como usar requerment para instalar las librerías que necesita este proyecto
+pip install -r requirements
