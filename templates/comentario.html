@@ -1,51 +1,56 @@
 {% extends 'index.html' %}
-<title>
-    {% block title %}
-        contactanos
-    {% endblock title %}
-</title>
-{% block content %}
-<div class="recuadro">
-    <br>
-    <div id="comentario" class="patron">
-        <form action="{{ url_for('enviar_comentario') }}" method="post" class="form">
-            <h2 class="form_title">Envia su comentario</h2>
-            <div class="form_container">
-                <div class="form_group">
-                    <input type="text" name="name" class="form_input" placeholder=" " required onkeypress="return SoloLetras(event)">
-                    <label for="name" class="form_label">Nombre</label>
-                    <span class="form_line"></span>
-                </div>
-            </div>
-            <br>
-            <div class="form_container">
-                <div class="form_group">
-                    <input type="email" name="email" class="form_input" placeholder=" " required onkeypress="return Correo(event)">
-                    <label for="email" class="form_label">Correo Electrónico</label>
-                    <span class="form_line"></span>
-                </div>
-            </div>
-            <br>
-            <div class="form_container">
-                <div class="form_group">
-                    <input type="text" name="subject" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)">
-                    <label for="subject" class="form_label">Asunto</label>
-                    <span class="form_line"></span>
-                </div>
-            </div>
-            <br>
-            <div class="form_container">
-                <div class="form_group">
-                    <textarea name="comments" cols="25" rows="5" class="form_input" placeholder=" " required onkeypress="return clave(event)"></textarea>
-                    <label for="comments" class="form_label">Comentario</label>
-                    <span class="form_line"></span>
-                </div>
-            </div>
-            <input type="submit" value="Enviar" class="boton boton-verc">
-        </form>
-    </div>
-    <br>
-    <script src="{{ url_for('static', filename='js/doc.js') }}"></script>
-</div>
 
-{% endblock content %}
+{% block title %} {{ super() }} Comentario {% endblock %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <div class="recuadro">
+        <br>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" data-dismiss="alert" class="close">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        <br>
+
+        <div id="comentario" class="patron">
+            <form action="{{ url_for('contactanos_view') }}" method="POST" class="form">
+                {{ form.hidden_tag() }} <!-- Incluye el campo CSRF -->
+                <h2 class="form_title">Envia tu comentario</h2>
+                <div class="form_container">
+                    <div class="form_group">
+                        {{ wtf.form_field(form.name, class="form_input", placeholder=" ", onkeypress="return SoloLetras(event)") }}
+                        {{ form.name.label(class="form_label") }}
+                    </div>
+                </div>
+                <br>
+                <div class="form_container">
+                    <div class="form_group">
+                        {{ wtf.form_field(form.email, class="form_input", placeholder=" ", onkeypress="return Correo(event)") }}
+                        {{ form.email.label(class="form_label") }}
+                    </div>
+                </div>
+                <br>
+                <div class="form_container">
+                    <div class="form_group">
+                        {{ wtf.form_field(form.subject, class="form_input", placeholder=" ", onkeypress="return SoloLetras(event)") }}
+                        {{ form.subject.label(class="form_label") }}
+                    </div>
+                </div>
+                <br>
+                <div class="form_container">
+                    <div class="form_group">
+                        {{ wtf.form_field(form.comments, class="form_input", placeholder=" ", rows="5", cols="25", onkeypress="return clave(event)") }}
+                        {{ form.comments.label(class="form_label") }}
+                    </div>
+                </div>
+                <br>
+                {{ wtf.form_field(form.enviar, class="boton boton-verc") }}
+            </form>
+        </div>
+        <br>
+        <script src="{{ url_for('static', filename='js/doc.js') }}"></script>
+    </div>
+{% endblock %}
