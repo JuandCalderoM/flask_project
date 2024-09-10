@@ -5,3 +5,4 @@ email-validator
 mysql-connector-python
 mysqlclient
 Flask-MySQLdb
+flask-testing

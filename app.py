@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField,SubmitField,TextAreaField
 from wtforms.validators import DataRequired, Email
+import unittest
 app=Flask(__name__)
 app.config['SECRET_KEY']='SUPER SECRETO'
 bootstrap = Bootstrap(app)
@@ -46,6 +47,11 @@ def contactanos_view():
         flash('Muchas gracias por la sugerencia!')
         return redirect(url_for('contactanos_view'))  
     return render_template('comentario.html', **context)
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
+
 @app.errorhandler(404)
 def not_found(error):
     context = {
