@@ -41,7 +41,6 @@ def contactanos_view():
         'form':form
     }
     if form.validate_on_submit():
-        print("Formulario enviado y válido") 
         name = form.name.data
         session['name'] = name
         flash('Muchas gracias por la sugerencia!')

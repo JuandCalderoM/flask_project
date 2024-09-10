@@ -2,3 +2,6 @@ flask
 flask-bootstrap
 flask-wtf
 email-validator
+mysql-connector-python
+mysqlclient
+Flask-MySQLdb
