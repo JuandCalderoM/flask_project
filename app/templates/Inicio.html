@@ -106,7 +106,7 @@
         </div>      
       </div>
       <div class="ver_td">
-        <a href="{{ url_for('anuncios') }}" class="boton boton-verc">ver Todas</a>
+        <a href="{{ url_for('main.anuncios') }}" class="boton boton-verc">ver Todas</a>
       </div>  
       <br>
     </main>
@@ -115,13 +115,13 @@
         <h3>Disfruta y aprende</h3>
         <p>si el sitio turistico no esta registrado
           <br>aun, contactanos</p>
-          <a href="/" class="boton boton-verc">contactanos</a>
+          <a href="{{ url_for('main.contactanos_view') }}" class="boton boton-verc">contactanos</a>
       </div>
     </section>
     <div class="seccion-inferior content">
         <section class="seccion-blog">
           <div class="texto-entrada">
-            <a href="{{ url_for('blog') }}">
+            <a href="{{ url_for('main.blog') }}">
               <h3>Nuestro Blog</h3>
             </a>
           </div>
@@ -130,7 +130,7 @@
             <img src="{{ url_for('static', filename='imagenes/casa de la cultura.jpeg') }}" alt="blog">
           </div>
           <div class="texto-entrada">
-            <a href="{{ url_for('blog') }}">
+            <a href="{{ url_for('main.blog') }}">
               <h4> La Casa de la Cultura </h4>
             </a>
             <p> Escrito en:<span>13/06/2024</span> por:<span> admin</span></p>
@@ -144,26 +144,30 @@
             <img src="{{ url_for('static', filename='imagenes/clima.jpg') }}" alt="blog">
           </div>
           <div class="texto-entrada">
-            <a href="{{ url_for('blog') }}">
+            <a href="{{ url_for('main.blog') }}">
               <h4> El Clima Templado </h4>
             </a>
             <p> Escrito en:<span>13/06/2024</span> por:<span> admin</span></p>
             <p>Facatativá se caracteriza por un clima templado y
               <br> bastante estable a lo largo del año. Las temperaturas 
-               <br>suelen oscilar entre los 10°C y los 19°C,</p>
+               <br>suelen oscilar entre los 10 y 20 grados centígrados.</p>
+          </div>
+          </article>
+          <article class="entrada-blog">
+          <div class="imagen-blog">
+            <img src="{{ url_for('static', filename='imagenes/arte.jpeg') }}" alt="blog">
+          </div>
+          <div class="texto-entrada">
+            <a href="{{ url_for('main.blog') }}">
+              <h4> El Arte en Facatativá </h4>
+            </a>
+            <p> Escrito en:<span>13/06/2024</span> por:<span> admin</span></p>
+            <p> Facatativá tiene una escena artística emergente
+              <br> que incluye tanto artistas locales como
+              <br> visitantes.</p>
           </div>
           </article>
         </section>
-        <section class="seccion-commet">
-          <h3>Comentarios de nuestro servicio</h3>
-            <div class="testimonio">
-              <header>
-                <p> Testimonio </p> 
-              </header>
-                <blockquote class='forma' >*este es un testimonio conmovedor* puedes ser cualquier cosa que quieras; sin embargo, en tu caso deberías apuntar bajo.</blockquote>
-              <p> -Elver Gudo</p>
-            </div>
-        </section>
     </div>
-</div>
-  {% endblock content %}
+  </div>
+{% endblock content %}
