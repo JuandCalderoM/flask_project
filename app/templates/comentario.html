@@ -2,53 +2,61 @@
 
 {% block title %} {{ super() }} Comentario {% endblock %}
 
-{% import 'bootstrap/wtf.html' as wtf %}
-
 {% block content %}
     <div class="recuadro">
-        
-       
         <br>
-
         <div id="comentario" class="patron">
             <form action="{{ url_for('main.contactanos_view') }}" method="POST" class="form">
                 {{ form.hidden_tag() }} <!-- Incluye el campo CSRF -->
                 <h2 class="form_title">Envia tu comentario</h2>
+                
+                <!-- Nombre -->
                 <div class="form_container">
                     <div class="form_group">
-                        {{ wtf.form_field(form.name, class="form_input", placeholder=" ", onkeypress="return SoloLetras(event)") }}
+                        <input type="text" name="{{ form.name.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)">
                         {{ form.name.label(class="form_label") }}
                     </div>
                 </div>
                 <br>
+
+                <!-- Email -->
                 <div class="form_container">
                     <div class="form_group">
-                        {{ wtf.form_field(form.email, class="form_input", placeholder=" ", onkeypress="return Correo(event)") }}
+                        <input type="email" name="{{ form.email.name }}" class="form_input" placeholder=" " onkeypress="return Correo(event)">
                         {{ form.email.label(class="form_label") }}
                     </div>
                 </div>
                 <br>
+
+                <!-- Asunto -->
                 <div class="form_container">
                     <div class="form_group">
-                        {{ wtf.form_field(form.subject, class="form_input", placeholder=" ", onkeypress="return SoloLetras(event)") }}
+                        <input type="text" name="{{ form.subject.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)">
                         {{ form.subject.label(class="form_label") }}
                     </div>
                 </div>
                 <br>
+
+                <!-- Comentarios -->
                 <div class="form_container">
                     <div class="form_group">
-                        {{ wtf.form_field(form.comments, class="form_input", placeholder=" ", rows="5", cols="25", onkeypress="return clave(event)") }}
+                        <textarea name="{{ form.comments.name }}" class="form_input" placeholder=" " rows="5" cols="25" onkeypress="return clave(event)"></textarea>
                         {{ form.comments.label(class="form_label") }}
                     </div>
                 </div>
                 <br>
-                {{ wtf.form_field(form.enviar, class="boton boton-verc") }}
+
+                <!-- Botón Enviar -->
+                <div class="form_container">
+                    <div class="form_group">
+                        <button type="submit" class="boton boton-verc">{{ form.enviar.label.text }}</button>
+                    </div>
+                </div>
             </form>
         </div>
         <br>
         <script src="{{ url_for('static', filename='js/doc.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Funcion de las alertas-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     </div>
 {% endblock %}
