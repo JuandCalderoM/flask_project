@@ -411,6 +411,12 @@ min-height: 100vh;
 .form_input:not(:placeholder-shown) + .form_line{
     transform: scale(1);
 }
+/*añadido buton login*/
+.bx{
+    font-size: 25px;
+    width: 250px;
+    padding: 10px 5px;
+}
 /* Pagina de Errores*/
 .error-flex{
     flex:1;

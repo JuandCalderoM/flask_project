@@ -62,3 +62,18 @@ function Correo(e) {
         return false;
     }
 }
+//para el caso de el login 
+const pass = document.getElementById('password-field');
+const icon = document.querySelector('.bx');
+
+icon.addEventListener('click', e => {
+    if (pass.type === 'password') {
+        pass.type = 'text';
+        icon.classList.remove('bx-show');  // Remueve la clase "mostrar"
+        icon.classList.add('bx-hide');     // Agrega la clase "ocultar"
+    } else {
+        pass.type = 'password';
+        icon.classList.remove('bx-hide');  // Remueve la clase "ocultar"
+        icon.classList.add('bx-show');     // Agrega la clase "mostrar"
+    }
+});

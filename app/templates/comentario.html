@@ -11,7 +11,7 @@
         <br>
 
         <div id="comentario" class="patron">
-            <form action="{{ url_for('contactanos_view') }}" method="POST" class="form">
+            <form action="{{ url_for('main.contactanos_view') }}" method="POST" class="form">
                 {{ form.hidden_tag() }} <!-- Incluye el campo CSRF -->
                 <h2 class="form_title">Envia tu comentario</h2>
                 <div class="form_container">
@@ -47,5 +47,8 @@
         </div>
         <br>
         <script src="{{ url_for('static', filename='js/doc.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Funcion de las alertas-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 from flask_testing import TestCase
 from flask import current_app, url_for
-from app import app
+from main import main as app
 class MainTest(TestCase):
     def create_app(self):
         app.config['TESTING'] = True
@@ -16,7 +16,18 @@ class MainTest(TestCase):
     def test_inicio_redirect(self):
         response=self.client.get(url_for('index'))
         self.assertRedirects(response,url_for('blog'))
-    #aqui verifico si se aprobo el post
-    def test_inicio_redirect(self):
+    #aqui verifico si se  logro un get
+    def test_coment_get(self):
         response=self.client.get(url_for('contactanos_view'))
+        self.assert200(response)
+    #aqui se aprobueba un post
+    def test_commet_post(self):
+        fake_form = {
+            'Nombre': 'fake',
+            'Correo Electronico': 'fake@fake.com',
+            'Tema':'prueba test',
+            'commentario':'lorem moment fake'
+
+        }
+        response = self.client.post(url_for('contactanos_view'), data=fake_form)
         self.assert200(response)

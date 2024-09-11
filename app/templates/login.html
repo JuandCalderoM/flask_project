@@ -1,0 +1,52 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  <!-- esto es una exportacion de Boxicons-->
+    <title>{% block title %}
+      Login_Facatur
+    {% endblock title %}</title>
+</head>
+<body>
+    <div class="recuadro">
+        <br>
+        {% for message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible">
+    <button type="button" data-dismiss="alert" class="close">&times;</button>
+    {{ message }}
+</div>
+{% endfor %}
+        <br>
+        <form action="{{ url_for('main.login') }}" method="POST" class="form">
+            {{ login_form.hidden_tag() }} <!-- Incluye el campo CSRF -->
+            <h2 class="form_title">Bienvenido </h2>
+            <div class="form_container">
+                <div class="form_group">
+                    {{ wtf.form_field(login_form.username, class="form_input", placeholder=" ", onkeypress="return SoloLetras(event)") }}
+                  
+                </div>
+            </div>
+            <br>
+            <div class="form_container">
+                <div class="form_group">
+                    {{ wtf.form_field(login_form.password, id="password-field",class="form_input", placeholder=" ", onkeypress="return clave(event)") }}
+                    <i class='bx bx-show'></i>
+                </div>
+            </div>
+            <br>
+            {{ wtf.form_field(login_form.submit, class="boton boton-verc") }}
+        </form>
+        <script src="{{ url_for('static', filename='js/doc.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Funcion de las alertas-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
