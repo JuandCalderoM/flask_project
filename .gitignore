@@ -6,7 +6,7 @@ imagen/*.bmp
 imagen/*.tiff
 __pycache__/
 # Ignorar el directorio config
-config/
+app/config/
 
 # Ignorar archivos y carpetas típicas de Python
 __pycache__/

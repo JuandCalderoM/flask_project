@@ -4,3 +4,4 @@ flask-wtf
 email-validator
 blinker
 firebase-admin
+flask-login

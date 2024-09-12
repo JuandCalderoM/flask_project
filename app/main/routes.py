@@ -1,11 +1,12 @@
 # app/routes.py
-from flask import Blueprint, render_template, redirect, url_for, session, flash
-from .forms import ContactForm
+from . import main
+from flask import render_template, redirect, url_for, session, flash
+from app.forms import ContactForm
 
-main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
+    
     return render_template('inicio.html')
 
 @main.route('/nosotros')
@@ -35,10 +36,4 @@ def contactanos_view():
 def go_to_login():
     # Aquí rediriges al blueprint `auth`, a la ruta `login`
     return redirect(url_for('auth.login'))
-@main.errorhandler(404)
-def not_found(error):
-    return render_template('error.html', code=404, message_for_error='Not Found', error=error)
 
-@main.errorhandler(500)
-def internal_server_error(error):
-    return render_template('error.html', code=500, message_for_error='Internal Server Error', error=error)

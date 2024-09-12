@@ -1,8 +1,11 @@
 from . import auth
 from flask import render_template, redirect, url_for, session, flash, make_response
 from app.forms import LoginForm
+from flask_login import login_required
+from app.firebase_service import get_user
 
-@auth.route('/login', methods=['GET', 'POST'])
+
+@auth.route('/logeo', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
     username = session.get('username')
@@ -20,5 +23,8 @@ def login():
     return render_template('login.html', **context)
 
 @auth.route('/session')
+@login_required
 def session_page():
     return render_template('plataform.html')
+
+
