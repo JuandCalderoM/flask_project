@@ -3,6 +3,7 @@
 from flask import render_template
 from app import create_app
 import unittest
+
 app = create_app()
 
 @app.cli.command()
@@ -16,5 +17,6 @@ def not_found(error):
 @app.errorhandler(500)
 def internal_server_error(error):
     return render_template('error.html', code=500, message_for_error='Internal Server Error', error=error)
+
 if __name__ == '__main__':
     app.run(debug=True)
