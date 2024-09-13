@@ -38,5 +38,23 @@ def logout():
     session.clear()  # Elimina todas las variables de sesión
     flash("Sesion finalizada")
     return redirect(url_for('main.index'))
+@auth.route('/perfil')
+def perfil():
+    username = session.get('username')
+    context={
+        'username':username
+    }
+    if username:
+        return render_template('perfil.html', **context)
+    else:
+        flash("necesistas de un inicio de sesion :)")
+        return redirect(url_for('auth.login'))
 
 
+@auth.route('/comentario')
+def comentario():
+    return render_template('view_comment.html')
+
+@auth.route('/usuarios')
+def usuarios():
+    return render_template('usuarios.html')
