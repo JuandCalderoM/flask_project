@@ -1,0 +1,44 @@
+{% extends 'plataform.html' %}
+{% block title %}
+    Perfil
+{% endblock title %}
+{% block content %}
+    <div class="card-body media align-items-center">
+        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt class="d-block ui-w-80">
+        <div class="media-body ml-4">
+            <label class="btn btn-outline-primary">
+                Subir nueva foto
+                <input type="file" class="account-settings-fileinput">
+            </label> &nbsp;
+            <button type="button" class="btn btn-default md-btn-flat">Reiniciar</button>
+            <div class="text-light small mt-1">Permitido JPG, GIF o PNG. Tamaño máximo de 800K</div>
+        </div>
+    </div>
+    <hr class="border-light m-0">
+    <div class="card-body">
+        <div class="form-group">
+            <label class="form-label">Usuario</label>
+            <input type="text" class="form-control mb-1" value="nmaxwell">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" value="Nelle Maxwell">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Correo electrónico</label>
+            <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
+            <div class="alert alert-warning mt-3">
+                Tu correo no está confirmado. Por favor revisa tu bandeja de entrada.<br>
+                <a href="javascript:void(0)">Reenviar confirmación</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Compañía</label>
+            <input type="text" class="form-control" value="Company Ltd.">
+        </div>
+    </div>
+    <div class="text-right mt-3">
+        <button type="button" class="btn btn-primary">Guardar cambios</button>&nbsp;
+        <button type="button" class="btn btn-default">Cancelar</button>
+    </div>
+{% endblock %}
