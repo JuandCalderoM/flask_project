@@ -29,7 +29,7 @@ def session_page():
         'username':username
     }
     if username:
-        return render_template('plataform.html', **context)
+        return render_template('perfil.html', **context)
     else:
         flash("necesistas de un inicio de sesion :)")
         return redirect(url_for('auth.login'))
@@ -53,8 +53,49 @@ def perfil():
 
 @auth.route('/comentario')
 def comentario():
-    return render_template('view_comment.html')
+    username = session.get('username')
+    context={
+        'username':username
+    }
+    if username:
+        return render_template('view_comment.html')
+    else:
+        flash("necesistas de un inicio de sesion :)")
+        return redirect(url_for('auth.login'))
 
 @auth.route('/usuarios')
 def usuarios():
-    return render_template('usuarios.html')
+    username = session.get('username')
+    context={
+        'username':username
+    }
+    if username:
+        return render_template('usuarios.html')
+    else:
+        flash("necesistas de un inicio de sesion :)")
+        return redirect(url_for('auth.login'))
+@auth.route('/crear_user')
+def crear_user():
+    username = session.get('username')
+    context={
+        'username':username
+    }
+    if username:
+        return render_template('createuser.html')
+    else:
+        flash("necesistas de un inicio de sesion :)")
+        return redirect(url_for('auth.login'))
+@auth.route('/crear_pub')
+def crear_pub():
+    username = session.get('username')
+    context={
+        'username':username
+    }
+    if username:
+        return render_template('publicaciones.html')
+    else:
+        flash("necesistas de un inicio de sesion :)")
+        return redirect(url_for('auth.login'))
+@auth.route('/volver')
+def volver():
+    return redirect(url_for('main.index'))

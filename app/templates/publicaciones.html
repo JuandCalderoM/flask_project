@@ -1,0 +1,34 @@
+{% extends 'plataform.html' %}
+{% block title %}
+    Craer Usuario
+{% endblock title %}
+{% block content %}
+<form action="">
+    <hr class="border-light m-0">
+    <div class="card-body">
+        <div class="form-group">
+            <label class="form-label">titulo_blog</label>
+            <input type="text" class="form-control mb-1" onpaste="return false;">
+        </div>
+        <div class="form-group">
+            <label class="form-label">publicador</label>
+            <input type="text" class="form-control" onpaste="return false;">
+        </div>
+        <div class="form-group">
+            <label class="form-label">observacion</label>
+            <input type="text" class="form-control mb-1"  onpaste="return false;">
+        </div>
+        <div class="form-group"></div>
+            <label class="form-label">historia</label>
+            <input type="text" class="form-control mb-1" onpaste="return false;">
+        </div>
+        <div class="form-group"></div>
+            <label class="form-label">fecha_publicacion</label>
+            <input type="datetime-local" class="form-control mb-1"  onpaste="return false;">
+        </div>
+    </div>
+    <div class="text-right mt-3">
+        <button type="button" class="btn btn-primary">Craer Publicacion</button>
+    </div>
+</form>
+{% endblock %}
