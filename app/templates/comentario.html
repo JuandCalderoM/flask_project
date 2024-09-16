@@ -13,7 +13,7 @@
                 <!-- Nombre -->
                 <div class="form_container">
                     <div class="form_group">
-                        <input type="text" name="{{ form.name.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)">
+                        <input type="text" name="{{ form.name.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)" onpaste="return false;">
                         {{ form.name.label(class="form_label") }}
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <!-- Email -->
                 <div class="form_container">
                     <div class="form_group">
-                        <input type="email" name="{{ form.email.name }}" class="form_input" placeholder=" " onkeypress="return Correo(event)">
+                        <input type="email" name="{{ form.email.name }}" class="form_input" placeholder=" " onkeypress="return Correo(event)" onpaste="return false;">
                         {{ form.email.label(class="form_label") }}
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                 <!-- Asunto -->
                 <div class="form_container">
                     <div class="form_group">
-                        <input type="text" name="{{ form.subject.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)">
+                        <input type="text" name="{{ form.subject.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)" onpaste="return false;">
                         {{ form.subject.label(class="form_label") }}
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <!-- Comentarios -->
                 <div class="form_container">
                     <div class="form_group">
-                        <textarea name="{{ form.comments.name }}" class="form_input" placeholder=" " rows="5" cols="25" onkeypress="return clave(event)"></textarea>
+                        <textarea name="{{ form.comments.name }}" class="form_input" placeholder=" " rows="5" cols="25" onkeypress="return clave(event)" onpaste="return false;"></textarea>
                         {{ form.comments.label(class="form_label") }}
                     </div>
                 </div>
