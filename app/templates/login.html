@@ -32,7 +32,7 @@
             <!-- Campo de nombre de usuario -->
             <div class="form_container">
                 <div class="form_group">
-                    <input type="text" name="{{ login_form.username.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)" onpaste="return false;">
+                    <input type="text" name="{{ login_form.username.name }}" class="form_input" placeholder=" " onkeypress="return SoloLetras(event)" onpaste="return false;" required>
                     {{ login_form.username.label(class="form_label") }}
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <!-- Campo de contraseña -->
             <div class="form_container">
                 <div class="form_group">
-                    <input type="password" name="{{ login_form.password.name }}" id="password-field" class="form_input" placeholder=" " onkeypress="return clave(event)" onpaste="return false;">
+                    <input type="password" name="{{ login_form.password.name }}" id="password-field" class="form_input" placeholder=" " onkeypress="return clave(event)" onpaste="return false;" required>
                     {{ login_form.password.label(class="form_label") }}
                     <i class='bx bx-show'></i>
                 </div>

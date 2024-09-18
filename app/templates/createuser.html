@@ -1,26 +1,15 @@
 {% extends 'plataform.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 {% block title %}
     Craer Usuario
 {% endblock title %}
 {% block content %}
-<form action="">
+<form action="{{ url_for('auth.crear_user') }}", method="POST">
     <hr class="border-light m-0">
     <div class="card-body">
         <div class="form-group">
-            <label class="form-label">Usuario</label>
-            <input type="text" class="form-control mb-1"  onpaste="return false;">
+            {{ wtf.quick_form(signup) }}
         </div>
-        <div class="form-group">
-            <label class="form-label">Clave</label>
-            <input type="text" class="form-control"  onpaste="return false;">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control mb-1"  onpaste="return false;">
-        </div>
-    </div>
-    <div class="text-right mt-3">
-        <button type="button" class="btn btn-primary">Craer Usuario</button>
     </div>
 </form>
 {% endblock %}
