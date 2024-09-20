@@ -1,0 +1,18 @@
+{% extends 'plataform.html' %}
+{% import 'macro.html' as macros %}
+{% block title %}
+    Usuario
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="card-container">
+        {% if user %}
+            {% for use in user %}
+                {{ macros.render_user(use) }}
+            {% endfor %}
+        {% else %}
+             <p>No hay usuarios aun.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

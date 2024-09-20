@@ -1,0 +1,20 @@
+{% extends 'plataform.html' %}
+{% import 'macro.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    Comentario
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="card-container">
+        {% if blogs %}
+            {% for blog in blogs %}
+                {{ macros.render_blog(blog) }}
+                {{ wtf.quick_form(delete_form, action=url_for('auth.delete_pub', id=blog.id)) }}
+            {% endfor %}
+        {% else %}
+             <p>No hay publicaciones disponibles.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

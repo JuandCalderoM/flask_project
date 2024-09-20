@@ -28,3 +28,23 @@ class MainTest(TestCase):
         }
         response = self.client.post('/contactanos', data=fake_form, follow_redirects=True)
         self.assert200(response)
+    def test_auth_blueprint_exists(self): #existe el blueprint de auth
+        self.assertIn('auth', self.app.blueprints)
+    
+    def test_auth_login_get(self):
+        response = self.client.get(url_for('auth.login'))
+
+        self.assert200(response)
+    def test_auth_login_template(self): #verifica la existencia de mi tempalte login
+        self.client.get(url_for('auth.login'))
+
+        self.assertTemplateUsed('login.html')
+    def test_auth_login_post(self):
+        fake_form = {
+        'username': 'fake',
+        'password': 'fake-password'
+        }
+        response = self.client.post(url_for('auth.login'), data=fake_form)
+        self.assertRedirects(response, url_for('auth.session_page'))
+
+    

@@ -1,0 +1,20 @@
+{% extends 'plataform.html' %}
+ {% import 'bootstrap/wtf.html' as wtf %}
+{% import 'macro.html' as macros %}
+{% block title %}
+    Comentario
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="card-container">
+        {% if commit %}
+        {% for com in commit %}
+            {{ macros.render_commit(com) }}
+            {{ wtf.quick_form(delete_form, action=url_for('auth.delete_commit', id=com.id)) }}
+        {% endfor %}
+    {% else %}
+         <p>No hay publicaciones disponibles.</p>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

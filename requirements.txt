@@ -2,4 +2,6 @@ flask
 flask-bootstrap
 flask-wtf
 email-validator
-pytest
+blinker
+firebase-admin
+flask-login

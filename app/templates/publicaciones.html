@@ -1,0 +1,13 @@
+{% extends 'plataform.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    Craer Usuario
+{% endblock title %}
+{% block content %}
+    <hr class="border-light m-0">
+    <div class="card-body">
+        <div class="form-group">
+            {{ wtf.quick_form(publi) }}
+        </div>
+    </div>
+{% endblock %}
