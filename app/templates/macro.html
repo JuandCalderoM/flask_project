@@ -1,0 +1,61 @@
+
+{% macro render_blog(blog) %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ blog.titulo_blog }}</h5>
+        <p class="card-text">Observación: {{ blog.observacion }}</p>
+        <p class="card-text">Historia: {{ blog.historia }}</p>
+        
+        <!-- Formato de fecha en Jinja2 -->
+        <p class="card-text">
+            Publicado el: 
+            {% if blog.fecha_publicacion is not string %}
+            {{ blog.fecha_publicacion.strftime('%d/%m/%Y %H:%M') }}
+            {% else %}
+            {{ blog.fecha_publicacion }}
+            {% endif %}
+        </p>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_user(user) %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.nombre_usuario }}</h5>
+        <p class="card-text">Correo: {{ user.correo_usuario }}</p>
+        <p class="card-text">Rol Usuario: {{ user.rol_usuario }}</p>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_commit(commit) %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ commit.subject }}</h5>
+        <p class="card-text">Correo: {{ commit.email}}</p>
+        <p class="card-text">Nombre : {{ commit.name  }}</p>
+        <p class="card-text">Comentario: {{ commit.comments  }}</p>
+   </div>
+</div>
+{% endmacro %}
+{% macro render_bloginit(blog) %}
+<div class="blog-grid" style="display: flex; justify-content: center;">
+    <div class="entrada-blog-page">
+        <img src="{{ url_for('static', filename='imagenes/clima_blog.jpg') }}" alt="Imagen del blog">
+        <div class="texto-entrada-page">
+            <h4>{{ blog.titulo_blog }}</h4>
+            <p>Escrito el: <span>  {% if blog.fecha_publicacion is not string %}
+                {{ blog.fecha_publicacion.strftime('%d/%m/%Y %H:%M') }}
+                {% else %}
+                {{ blog.fecha_publicacion }}
+                {% endif %}</span> por: <span>{{ blog.publicador}}</span></p>
+            <p>{{ blog.historia }}</p>
+            <p>Descripción:</p>
+            <ul class="texto_descriptivo-page">
+                <li><b>Observacion:</b> <br>{{ blog.observacion }}</li>
+            </ul>      
+        </div>
+    </div>
+</div>
+{% endmacro %}
