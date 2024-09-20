@@ -1,97 +1,18 @@
 {% extends 'index.html' %}
+{% import 'macro.html' as macros %}
 <title>{% block title %}
      Blog
   {% endblock title %}</title>
 {% block content %}
 <main class="content">
     <h2 class="fw-300 center-text">Blog</h2>
-    <div class="blog-grid">
-        <div class="entrada-blog-page">
-            <img src="{{ url_for('static', filename='imagenes/clima_blog.jpg') }}" alt="Imagen del blog">
-            <div class="texto-entrada-page">
-                <h4>El Clima Templado</h4>
-                <p>Escrito en: <span>13/06/2024</span> por: <span>admin</span></p>
-                <p>Facatativá, conocida por su agradable clima templado, es un destino ideal para aquellos que buscan disfrutar de temperaturas moderadas durante todo el año. Este clima no solo hace que vivir aquí sea placentero, sino que también contribuye a la belleza natural y la diversidad ecológica de la región.</p>
-                <p>Características del Clima:</p>
-                <ul class="texto_descriptivo-page">
-                    <li><b>Descripción del clima:</b> <br>Explicación sobre qué significa tener un clima templado y las características específicas del clima en Facatativá.</li>
-                    <li><b>Temperaturas y estaciones:</b> <br> Información sobre las temperaturas promedio, variaciones estacionales y condiciones climáticas típicas.</li>
-                </ul>      
-            </div>
-        </div>
-        <div class="entrada-blog-page">
-            <img src="{{ url_for('static', filename='imagenes/cultura.jpg') }}" alt="Imagen del blog">
-            <div class="texto-entrada-page">
-                <a href="https://www.youtube.com/watch?v=tfpL3udXgX8" target="_blank">
-                    <h4>La Casa de la Cultura</h4>
-                </a>
-                <p>Escrito en: <span>14/06/2024</span> por: <span>admin</span></p>
-                <p>La Casa de la Cultura de Facatativá es un emblemático lugar donde se celebra el patrimonio cultural y artístico de la región. Situada en el corazón del municipio, este espacio se ha convertido en un punto de encuentro para artistas, historiadores y ciudadanos que buscan mantener viva la rica herencia de Facatativá.</p>
-                <p>Historia y Origen:</p>
-                <ul class="texto_descriptivo">
-                   <li><b>Descripción del edificio:</b>  <br>Una breve reseña sobre la arquitectura y la historia del edificio que alberga la Casa de la Cultura.</li>
-                   <li><b>Fundación y propósito:</b> <br> Información sobre cuándo y por qué fue creada la Casa de la Cultura y su evolución a lo largo del tiempo.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <br><br>
-    <div class="blog-grid">
-        <div class="entrada-blog-page">
-            <img src="{{ url_for('static', filename='imagenes/hostales.jpeg') }}" alt="Imagen del blog">
-            <div class="texto-entrada-page">
-                <a href="https://www.booking.com/city/co/facatativa.es.html" target="_blank">
-                    <h4>Hostales</h4>
-                </a>
-                <p>Escrito en: <span>13/06/2024</span> por: <span>admin</span></p>
-                <p>Facatativá, con su encantador clima templado y rica herencia cultural, es un destino que cada vez más viajeros descubren y disfrutan. Si estás planeando una visita a esta hermosa localidad, conocer los mejores hostales puede ayudarte a encontrar el alojamiento perfecto para tu estancia.</p>
-                <p>Por Qué Elegir un Hostal en Facatativá:</p>
-                <ul class="texto_descriptivo">
-                    <li><b>Asequibilidad:</b> Explica cómo los hostales ofrecen una opción económica sin sacrificar comodidad.</li>
-                    <li><b>Ambiente amigable:</b> Destaca el ambiente social y acogedor de los hostales, ideal para conocer a otros viajeros.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="entrada-blog-page">
-            <img src="{{ url_for('static', filename='imagenes/teatro.jpeg') }}" alt="Imagen del blog">
-            <div class="texto-entrada-page">
-                <a href="https://www.youtube.com/watch?v=BDKW1mBVA2g" target="_blank">
-                    <h4>Teatro</h4>
-                </a>
-                <p>Escrito en: <span>15/06/2024</span> por: <span>admin</span></p>
-                <p>El reciente estreno del teatro de Facatativá marca un hito en la promoción de la cultura y las artes en la región. Este nuevo espacio promete convertirse en un centro vibrante donde la comunidad puede disfrutar de una variedad de expresiones artísticas y culturales. A continuación, exploramos todos los aspectos del nuevo teatro y lo que ofrece a los habitantes y visitantes de Facatativá.</p>
-            </div>
-        </div>
-    </div>
-    <br><br>
-    <div class="blog-grid">
-        <div class="entrada-blog-page">
-            <img src="{{ url_for('static', filename='imagenes/viapuente piedra.jpg') }}" alt="Imagen del blog">
-            <div class="texto-entrada-page">
-                <h4>El Puente de Piedra</h4>
-                <p>Escrito en: <span>16/06/2024</span> por: <span>admin</span></p>
-                <p>El Puente de Piedra de Facatativá es uno de los monumentos históricos más emblemáticos de la región. Construido hace décadas, este puente no solo es una obra de ingeniería notable, sino también un testimonio vivo de la rica historia y la tradición de Facatativá. A continuación, exploramos la fascinante historia y la importancia cultural de este icónico puente.</p>
-                <ul class="texto_descriptivo-page">
-                  <li><b>Construcción:</b> Detalles sobre cuándo y por qué se construyó el Puente de Piedra de Facatativá, destacando su importancia para la conectividad local y regional.</li>
-                  <li><b>Arquitectura:</b> Descripción de la estructura del puente, incluyendo los materiales utilizados y el estilo arquitectónico de la época.</li>
-                </ul>               
-            </div>
-        </div>
-        <div class="entrada-blog-page">
-            <img src="{{ url_for('static', filename='imagenes/hoteles.jpeg') }}" alt="Imagen del blog">
-            <div class="texto-entrada-page">
-                <a href="https://facareal.todos-los-hoteles-cundinamarca.com/es/" target="_blank">
-                    <h4>Hoteles</h4>
-                </a>
-                <p>Escrito en: <span>16/06/2024</span> por: <span>admin</span></p>
-                <p>Facatativá, con su clima agradable y rica herencia cultural, ofrece una variedad de opciones de hospedaje que van desde hoteles boutique hasta opciones más económicas. Exploraremos algunos de los mejores hoteles que puedes considerar para tu próxima visita a esta encantadora ciudad.</p>
-                <ul class="texto_descriptivo">
-                  <li><b>Hotel Boutique:</b> Descripción de un hotel boutique de lujo en el centro de la ciudad, destacando su diseño elegante y servicios exclusivos como spa, restaurante gourmet y vistas panorámicas.</li>
-                  <li><b>Servicios:</b> Wi-Fi de alta velocidad, habitaciones y suites elegantes con comodidades de lujo, atención personalizada al cliente.</li>
-                </ul>    
-            </div>
-        </div>
-    </div>
+    {% if blogs %}
+    {% for blog in blogs %}
+        {{ macros.render_bloginit(blog) }}
+        <br><br>
+    {% endfor %}
+{% else %}
+     <p>No hay publicaciones disponibles.</p>
+{% endif %}
 </main>
-</div>
 {% endblock content %}

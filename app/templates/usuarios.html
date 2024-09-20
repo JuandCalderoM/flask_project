@@ -1,34 +1,18 @@
 {% extends 'plataform.html' %}
+{% import 'macro.html' as macros %}
 {% block title %}
     Usuario
 {% endblock title %}
 {% block content %}
 <div class="container">
     <div class="card-container">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Usuario 1</h5>
-                <p class="card-text">Contenido de la primera card.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Usuario 2</h5>
-                <p class="card-text">Contenido de la segunda card.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Usuario 3</h5>
-                <p class="card-text">Contenido de la tercera card.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card 4</h5>
-                <p class="card-text">Contenido de la tercera card.</p>
-            </div>
-        </div>
+        {% if user %}
+            {% for use in user %}
+                {{ macros.render_user(use) }}
+            {% endfor %}
+        {% else %}
+             <p>No hay usuarios aun.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

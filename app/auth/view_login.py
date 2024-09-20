@@ -1,9 +1,9 @@
 from . import auth
 from flask import render_template, redirect, url_for, session, flash
-from app.forms import LoginForm,Signup,Publicacion
-from app.models import UserModel
-from app.firebase_service import  get_user_exit ,put_user
+from app.forms import LoginForm,Signup,Publicacion,Delete
+from app.firebase_service import  get_user_exit ,put_user,get_blog,put_blog,get_blog_reference,get_user_edit,get_commit,delete_commit,delete_blog
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date,datetime
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
@@ -61,8 +61,12 @@ def perfil():
 @auth.route('/comentario')
 def comentario():
     username = session.get('username')
+    delete_form=Delete()
+    commit=get_commit()
     context = {
-        'username': username
+        'username': username,
+        'commit':commit,
+        'delete_form':delete_form
     }
     if username:
         return render_template('view_comment.html', **context)
@@ -70,14 +74,21 @@ def comentario():
         flash("Necesitas iniciar sesión :)")
         return redirect(url_for('auth.login'))
     
+@auth.route('/delete_commit/<string:id>', methods=['POST'])
+def delete_commit(id):
+    delete_commit(id)
+    return redirect(url_for('auth.comentario'))
+
 @auth.route('/usuarios')
 def usuarios():
     username = session.get('username')
+    user=get_user_edit(username)
     context={
-        'username':username
+        'username':username,
+        'user':user
     }
     if username:
-        return render_template('usuarios.html')
+        return render_template('usuarios.html',**context)
     else:
         flash("necesistas de un inicio de sesion :)")
         return redirect(url_for('auth.login'))
@@ -121,8 +132,20 @@ def crear_pub():
     }
     if username:
         if publication.validate_on_submit():
-            flash('Publicacion registrada!')  
-            return redirect(url_for('auth.ver_pub'))
+            title=publication.title.data
+            historia=publication.historia.data
+            observacion=publication.observacion.data
+            fecha=date.today()
+            fecha_publicacion = datetime.combine(fecha, datetime.min.time())  # Convertir a datetime
+            id=username+title
+            publicdoc=get_blog(id)
+            if not publicdoc:
+                put_blog(id,title,username,observacion,historia,fecha_publicacion)
+                flash('Publicacion registrada!')  
+                return redirect(url_for('auth.ver_pub'))
+            else:
+                flash('Ya realizaste esta publicacion')  
+                return redirect(url_for('auth.crear_pub'))
         return render_template('publicaciones.html',**context)
     else:
         flash("necesistas de un inicio de sesion :)")
@@ -130,14 +153,31 @@ def crear_pub():
 @auth.route('/ver_pub')
 def ver_pub():
     username = session.get('username')
-    context={
-        'username':username
+    blogs = get_blog_reference(username)
+    delete_form=Delete()
+    # Formatear fecha si es necesario
+    for blog in blogs:
+        if 'fecha_publicacion' in blog:
+            # Verificar si 'fecha_publicacion' es del tipo DatetimeWithNanoseconds o similar
+            if isinstance(blog['fecha_publicacion'], datetime):
+                blog['fecha_publicacion'] = blog['fecha_publicacion'].strftime('%d/%m/%Y')
+    
+    context = {
+        'username': username,
+        'blogs': blogs,
+        'delete_form':delete_form
     }
+    
     if username:
-        return render_template('ver_public.html')
+        return render_template('ver_public.html', **context)
     else:
-        flash("necesistas de un inicio de sesion :)")
+        flash("Necesitas un inicio de sesión :)")
         return redirect(url_for('auth.login'))
+@auth.route('/delete_p/<string:id>', methods=['POST'])
+def delete_pub(id):
+    delete_blog(id)
+    return redirect(url_for('auth.ver_pub'))
+
 @auth.route('/volver')
 def volver():
     return redirect(url_for('main.index'))

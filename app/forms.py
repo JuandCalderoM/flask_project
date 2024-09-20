@@ -21,6 +21,7 @@ class Signup(FlaskForm):
 class Publicacion(FlaskForm):
     title= StringField('Titulo de la publicacion', validators=[DataRequired()])
     historia=TextAreaField('Historia', validators=[DataRequired()])
-    observacion=TextAreaField('bservacion', validators=[DataRequired()])
+    observacion=TextAreaField('Observacion', validators=[DataRequired()])
     submit = SubmitField('Crear Publicacion')
-    
+class Delete(FlaskForm):
+    submit=SubmitField('Eliminar')

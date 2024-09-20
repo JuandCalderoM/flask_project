@@ -30,9 +30,4 @@ class UserModel(UserMixin):
                 role=user_data['rol_usario']
             ))
         return None  # Si no se encuentra el usuario
-    def get_user_by_username(username):
-        users_ref = db.collection('users')
-        query = users_ref.where('nombre_usuario', '==', username).limit(1).get()
-        if query:
-            return query[0].to_dict()  # Devuelve los datos del usuario
-        return None
+  
