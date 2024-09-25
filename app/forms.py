@@ -25,3 +25,5 @@ class Publicacion(FlaskForm):
     submit = SubmitField('Crear Publicacion')
 class Delete(FlaskForm):
     submit=SubmitField('Eliminar')
+class Update(FlaskForm):
+    submit=SubmitField('Actualizar')

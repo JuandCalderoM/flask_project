@@ -1,6 +1,6 @@
 
 # app.py
-from flask import render_template
+from flask import render_template,session
 from app import create_app
 import unittest
 

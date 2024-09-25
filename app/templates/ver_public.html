@@ -9,7 +9,7 @@
     <div class="card-container">
         {% if blogs %}
             {% for blog in blogs %}
-                {{ macros.render_blog(blog) }}
+                {{ macros.render_blog(blog,update) }}
                 {{ wtf.quick_form(delete_form, action=url_for('auth.delete_pub', id=blog.id)) }}
             {% endfor %}
         {% else %}
