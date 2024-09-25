@@ -1,7 +1,7 @@
 from . import auth
-from flask import render_template, redirect, url_for, session, flash
-from app.forms import LoginForm,Signup,Publicacion,Delete
-from app.firebase_service import  get_user_exit ,put_user,get_blog,put_blog,get_blog_reference,get_user_edit,get_commit,delete_commit,delete_blog
+from flask import render_template, redirect, url_for, session, flash,request
+from app.forms import LoginForm,Signup,Publicacion,Delete,Update
+from app.firebase_service import  get_user_exit ,put_user,get_blog,put_blog,get_blog_reference,get_user_edit,get_commit,delete_blog,updte_user_perfil,update_blog_base,delete_commit_from_firestore
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date,datetime
 @auth.route('/login', methods=['GET', 'POST'])
@@ -16,13 +16,13 @@ def login():
 
         # Obtener los datos del usuario (incluyendo la contraseña encriptada) desde la base de datos
         user = get_user_exit(username)
-        
         if user:
+            session['password'] = password
             # Verificar la contraseña ingresada con la contraseña encriptada almacenada
             if check_password_hash(user['clave_usuario'], password):  # Aquí se asume que 'clave_usuario' es la contraseña encriptada
                 session['username'] = username
                 flash('Inicio de sesión exitoso!')
-                return redirect(url_for('auth.session_page'))
+                return redirect(url_for('auth.perfil'))
             else:
                 flash('Nombre de usuario o contraseña incorrectos')
         else:
@@ -32,6 +32,7 @@ def login():
 @auth.route('/session')
 def session_page():
     username = session.get('username')
+    
     context={
         'username':username
     }
@@ -45,17 +46,43 @@ def logout():
     session.clear()  # Elimina todas las variables de sesión
     flash("Sesion finalizada")
     return redirect(url_for('main.index'))
-@auth.route('/perfil')
+@auth.route('/perfil',methods=['GET', 'POST'])
 def perfil():
     username = session.get('username')
+    password = session.get('password')  
+    user_perf=get_user_exit(username)
+    update=Update()
     context={
-        'username':username
+        'perfil':user_perf,
+        'password': password,
+        'update':update
     }
     if username:
         return render_template('perfil.html', **context)
     else:
         flash("necesistas de un inicio de sesion :)")
         return redirect(url_for('auth.login'))
+
+@auth.route('/update_perfil/<string:correo>', methods=['POST'])
+def update_perfil(correo):
+    # Obtiene el username desde la sesión
+    username = session.get('username')
+    
+    # Obtiene el valor actualizado del correo desde el formulario
+    correo_usuario_actualizado = request.form.get('correo_usuario')
+    nueva_clave = request.form.get('new_password')
+       # Si hay nueva contraseña, generamos el hash y actualizamos
+    nueva_clave_hash = generate_password_hash(nueva_clave)
+    if nueva_clave_hash:
+        updte_user_perfil(username, correo_usuario_actualizado, nueva_clave_hash)
+        session.clear()
+        flash("Perfil y contraseña actualizados con éxito ")
+    else:
+        updte_user_perfil(username, correo_usuario_actualizado, nueva_clave_hash)
+        flash("Perfil actualizado ")
+    
+    # Redirige a la vista del perfil
+    return redirect(url_for('auth.perfil'))
 
 
 @auth.route('/comentario')
@@ -76,7 +103,8 @@ def comentario():
     
 @auth.route('/delete_commit/<string:id>', methods=['POST'])
 def delete_commit(id):
-    delete_commit(id)
+    resultado = delete_commit_from_firestore(id)  # Llama a la nueva función de eliminación
+    # Puedes manejar el resultado aquí, por ejemplo, almacenando un mensaje en la sesión si es necesario
     return redirect(url_for('auth.comentario'))
 
 @auth.route('/usuarios')
@@ -155,6 +183,7 @@ def ver_pub():
     username = session.get('username')
     blogs = get_blog_reference(username)
     delete_form=Delete()
+    update_form =Update()
     # Formatear fecha si es necesario
     for blog in blogs:
         if 'fecha_publicacion' in blog:
@@ -165,7 +194,8 @@ def ver_pub():
     context = {
         'username': username,
         'blogs': blogs,
-        'delete_form':delete_form
+        'delete_form':delete_form,
+        'update': update_form
     }
     
     if username:
@@ -173,6 +203,22 @@ def ver_pub():
     else:
         flash("Necesitas un inicio de sesión :)")
         return redirect(url_for('auth.login'))
+@auth.route('/update_blog/<string:titulo>', methods=['POST'])
+def update_blog(titulo):
+    username = session.get('username')
+    titulo = request.form.get('titulo_blog')
+    observacion = request.form.get('observacion')
+    historia = request.form.get('historia')
+    fecha=date.today()
+    nueva_fecha_publicacion = datetime.combine(fecha, datetime.min.time())  # Convertir a datetime
+       # Llamar a la función `update_blog` para actualizar el blog en Firestore
+    if update_blog_base(username, titulo, observacion, historia,nueva_fecha_publicacion):
+        flash(f'El blog "{titulo}" ha sido actualizado correctamente', 'success')
+    else:
+        flash('No se pudo actualizar el blog. Verifica que el título y el usuario sean correctos.', 'danger')
+
+    # Redirigir a la vista de publicaciones después de actualizar
+    return redirect(url_for('auth.ver_pub'))
 @auth.route('/delete_p/<string:id>', methods=['POST'])
 def delete_pub(id):
     delete_blog(id)

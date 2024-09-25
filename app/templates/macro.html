@@ -1,20 +1,39 @@
-
-{% macro render_blog(blog) %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% macro render_blog(blog,update) %}
 <div class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{ blog.titulo_blog }}</h5>
-        <p class="card-text">Observación: {{ blog.observacion }}</p>
-        <p class="card-text">Historia: {{ blog.historia }}</p>
-        
-        <!-- Formato de fecha en Jinja2 -->
+    <form action="{{ url_for('auth.update_blog', titulo=blog.titulo_blog,id=blog.id,observacion=blog.observacion,historia=blog.historia) }}" method="POST">
+        <!-- Incluimos el token CSRF para protección -->
+        <hr class="border-light m-0">
+        <div class="card-body">
+            <div class="form-group">
+                <label class="form-label">Titulo Blog</label>
+                <!-- Campo editable para el nombre de usuario -->
+                <input type="text" class="form-control mb-1" name="titulo_blog" value="{{  blog.titulo_blog}}" onpaste="return false;">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Observación</label>
+                <input type="text" class="form-control mb-1" name="observacion" value="{{ blog.observacion }}" onpaste="return false;">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Historia</label>
+                <!-- Campo no editable para el rol (admin) -->
+                <input type="text" class="form-control" name="historia" value="{{ blog.historia }}" onpaste="return false;">
+            </div>
+    
+        </div>
         <p class="card-text">
             Publicado el: 
             {% if blog.fecha_publicacion is not string %}
-            {{ blog.fecha_publicacion.strftime('%d/%m/%Y %H:%M') }}
+            {{ blog.fecha_publicacion.strftime('%d/%m/%Y') }}
             {% else %}
             {{ blog.fecha_publicacion }}
             {% endif %}
         </p>
+        <!-- Botón para enviar el formulario -->
+        <div class="text-right mt-3">
+            <button type="submit" class="btn btn-primary">{{ update.submit.label.text }}</button>
+        </div>
+    </form>
     </div>
 </div>
 {% endmacro %}
@@ -58,4 +77,42 @@
         </div>
     </div>
 </div>
+{% endmacro %}
+{% macro render_perfil(perfil, password, update) %}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+<form action="{{ url_for('auth.update_perfil', correo=perfil.correo_usuario) }}" method="POST">
+    <!-- Incluimos el token CSRF para protección -->
+    {{ update.csrf_token }}
+    
+    <hr class="border-light m-0">
+    <div class="card-body">
+        <div class="form-group">
+            <label class="form-label">Usuario</label>
+            <!-- Campo editable para el nombre de usuario -->
+            <input type="text" class="form-control mb-1" name="nombre_usuario" value="{{ perfil.nombre_usuario }}" onpaste="return false;" readonly>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Correo electrónico</label>
+            <!-- Campo editable para el correo electrónico -->
+            <input type="text" class="form-control mb-1" name="correo_usuario" value="{{ perfil.correo_usuario }}" onpaste="return false;">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Clave del usuario</label>
+            <!-- Campo editable para el correo electrónico -->
+            <input type="password" class="form-control mb-1" name="new_password" id="password-field" value="{{password}}" onpaste="return false;">
+            <i class='bx bx-show'></i>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Rol</label>
+            <!-- Campo no editable para el rol (admin) -->
+            <input type="text" class="form-control" value="admin" readonly>
+        </div>
+    </div>
+    
+    <!-- Botón para enviar el formulario -->
+    <div class="text-right mt-3">
+        <button type="submit" class="btn btn-primary">{{ update.submit.label.text }}</button>
+    </div>
+</form>
+<script src="{{ url_for('static', filename='js/doc.js') }}"></script>
 {% endmacro %}

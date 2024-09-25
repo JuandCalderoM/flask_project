@@ -34,6 +34,7 @@ def get_user_exit(usuario):
     query = users_ref.where('nombre_usuario', '==', usuario).get()
     for user in query:
         user_data = user.to_dict()
+        user_data['id'] = user.id
         return user_data # 
     return None  # Si no se encuentra el usuario  # Devuelve el rol del usuario
 def get_user_edit(usuario):
@@ -57,6 +58,7 @@ def put_user(user_clav, correo_usuario, nombre_usuario, rol_usuario):
     }
     # Usa el método 'set' para actualizar o crear el documento
     user_doc_ref.set(user_data, merge=True)  # merge=True permite combinar los datos con los existentes
+    
 
 ##Sector de los comentarios
 def get_comment(user_id):
@@ -92,9 +94,17 @@ def get_commit():
 
     return commits
 
-def delete_commit(id):
-    commit_doc_ref = db.collection('comentario').document(id)
-    commit_doc_ref.delete()
+#  función de eliminación
+def delete_commit_from_firestore(id):
+    if not id:
+        return "ID no válido"
+
+    try:
+        commit_doc_ref = db.collection('comentario').document(id)
+        commit_doc_ref.delete()
+        return "Comentario eliminado exitosamente"
+    except Exception as e:
+        return f"Ocurrió un error al eliminar el comentario: {str(e)}"
 #Seccion para el blogñ
 def get_blog(id):
     blog_ref = db.collection('blog').document(id).get()
@@ -131,7 +141,10 @@ def get_all_blogs():
         # Añade el diccionario a la lista de blogs
         blogs.append(blog_data)
     
-    return blogs
+    # Ordena la lista de blogs por 'fecha_publicacion' en orden descendente
+    blogs_sorted = sorted(blogs, key=lambda x: x['fecha_publicacion'], reverse=True)
+    
+    return blogs_sorted
 ##generar un blog
 def put_blog(id,title,username,observacion,historia,fecha_publicacion):
     commit_doc_ref = db.collection('blog').document(id)
@@ -148,4 +161,39 @@ def put_blog(id,title,username,observacion,historia,fecha_publicacion):
 def delete_blog(id):
     blog_doc_ref = db.collection('blog').document(id)
     blog_doc_ref.delete()
-print(get_all_blogs())
+#actualizar perfil
+def updte_user_perfil(username, correo_usuario_actualizado, nueva_clave_hash):
+    doc_user = get_user_exit(username)
+    
+    if doc_user:
+        # Preparamos el diccionario para la actualización
+        update_data = {
+            'correo_usuario': correo_usuario_actualizado,
+            'clave_usuario':nueva_clave_hash
+        }
+        db.collection('usuario').document(doc_user['id']).update(update_data)
+        print(update_data)
+    else:
+        print("Usuario no encontrado")
+
+#actualizar publicacion
+def update_blog_base(user, titulo, nueva_observacion, nueva_historia, nueva_fecha_publicacion):
+    # Obtén la referencia del blog a través del usuario
+    blogs = get_blog_reference(user)
+    
+    if blogs:
+        for blog in blogs:  # Itera sobre cada blog
+                blog_doc_ref = db.collection('blog').document(blog['id'])
+
+                # Datos que se van a actualizar
+                update_data = {
+                    'titulo_blog': titulo,
+                    'observacion': nueva_observacion,
+                    'historia': nueva_historia,
+                    'fecha_publicacion': nueva_fecha_publicacion,
+                }
+
+                # Usa el método 'update' para actualizar el documento
+                blog_doc_ref.update(update_data)
+                return True  # Devuelve True si la actualización fue exitosa
+    return False  # Devuelve False si no se encontró el blog
